@@ -8,53 +8,46 @@
 import 'dart:io';
 
 main() {
-
-  // Ejemplo: 
-  // Crear una función para imprimir STDOUTS en lugar de 
+  // Ejemplo:
+  // Crear una función para imprimir STDOUTS en lugar de
   // la siguiente línea. Luego todos los stdouts deberían ser
   // llamados usando nuestra función personalizada
   procesarUsuario(1500, 1);
 
-
   procesarUsuario(1800, 2);
 }
 
-
-void imprimir( String texto ) => stdout.writeln(texto);
+void imprimir(String texto) => stdout.writeln(texto);
 
 String leer() => stdin.readLineSync() ?? '';
 
-
-void procesarUsuario( double salario, int i ) {
-
+void procesarUsuario(double salario, int i) {
   imprimir('=========== Usuario $i =============');
 
   imprimir('¿Cúal es su nombre?');
-  String nombre = stdin.readLineSync() ?? '';
+  String nombre = leer();
 
   imprimir('¿Qué edad tienes?');
-  String edad = stdin.readLineSync() ?? '';
-  
+  String edad = leer();
+
   imprimir('¿En qué país naciste?');
-  String pais = stdin.readLineSync() ?? '';
-  
+  String pais = leer();
 
   final Map<String, dynamic> usuario = {
     'nombre': nombre,
-    'edad'  : edad,
-    'pais'  : pais
+    'edad': edad,
+    'pais': pais
   };
 
   imprimir('Usuario $i sin deducciones');
-  imprimir( usuario.toString() );
+  imprimir(usuario.toString());
 
   double deducciones = salario * 0.15;
   double salarioNeto = salario - deducciones;
 
-  usuario['salario']     = salario;
+  usuario['salario'] = salario;
   usuario['deducciones'] = deducciones;
   usuario['salarioNeto'] = salarioNeto;
 
   imprimir(usuario.toString());
-
 }
